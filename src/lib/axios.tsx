@@ -3,9 +3,11 @@ import axios from "axios"
 
 export const axiosInstance = axios.create({
   baseURL: config.baseUrl,
+  withCredentials: true
 });
 
 axiosInstance.interceptors.request.use(function (config) {
+  console.log("Axios", config);
   return config;
 }, function (error) {
   return Promise.reject(error);
@@ -14,7 +16,7 @@ axiosInstance.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 axiosInstance.interceptors.response.use(function onFulfilled(response) {
-
+  console.log("Axios", response);
   return response;
 }, function onRejected(error) {
 
